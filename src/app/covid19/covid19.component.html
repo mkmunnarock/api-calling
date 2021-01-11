@@ -1,0 +1,79 @@
+<div class="container mt-5">
+    <button  routerLink="/" class="float-left btn btn-light">Go Back</button>
+    <div class="card" style="align-items: center;">
+        <h1> Covid 19 Tracker APP</h1>
+    </div>
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" name="country" [(ngModel)]="country"
+         (ngModelChange)="Search()" placeholder="Enter Country Name to Search" aria-label="Search">
+        <!-- <button class="btn btn-outline-success my-2 my-sm-0"  type="text">Search</button> -->
+      </form>
+
+
+    <div>
+        <table class=" table table-bordered">'
+            <thead style="text-align: center;">
+                <tr style="color:blue;">
+                    <th (click)="sort('country')">Country&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('cases')">Cases&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('todayCases')">Today Cases &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('deaths')">Deaths&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('todayDeaths')">Today Deaths&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('recovered')">Recovered&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('active')">Active &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('critical')"> Critical&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('casesPerOneMillion')">Cases Per One Million&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('deathsPerOneMillion')"> Total Tests&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('totalTests')"> Critical&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                    <th (click)="sort('testsPerOneMillion')">Tests Per One Million&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr style="text-align: center;" *ngFor="let d of data | orderBy: key: reverse | paginate: {itemsPerPage:7,currentPage:p};">
+                    <td>{{d.country}}</td>
+                        <td>{{d.cases}}</td>
+                        <td>{{d.todayCases}}</td>
+                        <td>{{d.deaths}}</td>
+                        <td>{{d.todayDeaths}}</td>
+                        <td>{{d.recovered}}</td>
+                        <td>{{d.active}}</td>
+                        <td>{{d.critical}}</td>
+                        <td>{{d.casesPerOneMillion}}</td>
+                        <td>{{d.deathsPerOneMillion}}</td>
+                        <td>{{d.totalTests}}</td>
+                        <td>{{d.testsPerOneMillion}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+
+
+
+    <div class="card mt-5" style="padding: 20px;">
+        <div class="row" >
+            <div class="col-lg-4" style="color:rgb(248, 248, 246);" *ngFor="let d of data;">
+                <div class="card mt-3" style="padding: 5px;">
+                    <div class="card-header center" style="background-color: blue;">
+                       <h4> Country :-{{d.country}}</h4>
+                    </div>
+                   <div class="card-body" style="background-color: rgb(57, 54, 209);">
+                    Cases :-{{d.cases}}<br>
+                    Today Cases :-{{d.todayCases}}<br>
+                    Deaths :-{{d.deaths}}<br>
+                    Today Deaths :-{{d.todayDeaths}}<br>
+                    Recovered :-{{d.recovered}}<br>
+                    Active :-{{d.active}}<br>
+                    Critical :-{{d.critical}}<br>
+                    Cases Per One Million :-{{d.casesPerOneMillion}}<br>
+                    Deaths Per One Million :-{{d.deathsPerOneMillion}}<br>
+                    Total Tests :-{{d.totalTests}}<br>
+                    Tests Per One Million :-{{d.testsPerOneMillion}}<br>
+                   </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 //import menual
-import { HttpClient  } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,18 @@ export class PhotosService {
   constructor(
     private http: HttpClient
   ) { }
-  
-  getAlbums(){
+
+  getAlbums() {
     return this.http.get('https://jsonplaceholder.typicode.com/albums');
   }
 
   getPhotos(albumId) {
-    return this.http.get('https://jsonplaceholder.typicode.com/photos?albumId =${{albumId');
+    return this.http.get('https://jsonplaceholder.typicode.com/photos?albumId =${{albumId}}');
+  }
+
+  API = 'https://jsonplaceholder.typicode.com/comments';
+
+  public getComments() {
+    return this.http.get(this.API);
   }
 }

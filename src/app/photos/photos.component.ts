@@ -9,6 +9,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./photos.component.css']
 })
 export class PhotosComponent implements OnInit {
+ 
 photos;
 albumId;
   constructor(
